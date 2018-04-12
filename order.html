@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>点菜神器--选择困难症专用</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0, maximum-scale=1.0, user-scalable=0;">
+    <style type="text/css">
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        html{
+            background:  #078494;
+        }
+        p{
+            width: 100%;
+            height: 50px;
+            text-align: center;
+            line-height: 50px;
+            font-weight: bold;
+            color: white;
+            box-shadow: 2px 2px 2px #666;
+            background: #777;
+        }
+        div{
+            width: 300px;
+            height: 300px;
+            margin: 100px auto;
+            text-align: center;
+            border: 1px solid #777;
+            background: #777;
+        }
+        input{
+            display: block;
+            width: 200px;
+            height: 50px;
+            font-size: 20px;
+            text-align: center;
+            margin: 50px auto;
+            border: none;
+        }
+        button{
+            width: 100px;
+            height: 35px;
+            font-size: 20px;
+            border: none;
+            outline: none;
+            box-shadow: 2px 2px 2px #333;
+        }
+    </style>
+</head>
+<body>
+    <p>点菜神器</p>
+    <div>
+        <input type="text">
+        <button>开始</button>
+    </div>
+    <script type="text/javascript">
+        var btnNode=document.getElementsByTagName("button")[0];
+        var inputNode=document.getElementsByTagName("input")[0];
+        var menuArr=["蒜苗炒肉","青椒炒蛋","苦瓜炒蛋","千页豆腐炒肉","土豆丝炒肉","西红柿炒蛋","空心菜梗","茄子豆角"
+            ,"花菜炒肉","外婆菜炒蛋","外婆菜炒肉","炒生菜","炒空心菜","辣椒炒小鱼仔","胡萝卜片炒肉","酸辣鸡杂",
+            "玉米青豆","农家一碗香","麻婆豆腐","莴笋炒肉"];
+        var timeout=null;
+        inputNode.value=menuArr[0];
+        btnNode.onclick = function(){
+            if(timeout==null){
+                change();
+                btnNode.innerHTML = "停止";
+                btnNode.style.color = "red";
+                return;
+            }
+            clearTimeout(timeout);
+            timeout = null;
+            btnNode.innerHTML = "开始";
+            btnNode.style.color = "black";
+            inputNode.value = menuArr[index];
+            inputNode.style.color = "blue";
+
+        }
+        function change(){
+            index = Math.floor(Math.random()*20);
+
+            var name = menuArr[index];
+            inputNode.value = name;
+            inputNode.style.color = "black";
+            timeout = setTimeout("change()",10);
+        }
+    </script>
+</body>
+</html>
